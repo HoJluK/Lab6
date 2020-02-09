@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
@@ -29,7 +29,8 @@ namespace Lab6
 
             public void showTable()
             {
-                Console.WriteLine("{0, -20} {1, -5} {2, -10} {3, -10}", surname, position, year, salary);
+            	Console.WriteLine("Surname{0, -13} Position{0, -12} Birth year{0, -10} Salary{0, -14}", " ");
+                Console.WriteLine("{0, -20} {1, -20} {2, -20} {3, -20}", surname, position, year, salary);
                 Console.WriteLine();
             }
         }
@@ -49,16 +50,17 @@ namespace Lab6
         {
         	var table = new List<Worker>();
         	
-        	string path = @"C:\Lab6_1";
-        	var dirInfo = new DirectoryInfo(path);
-            if (!dirInfo.Exists)
+        	string directory = @"C:\Lab6_1";
+        	var directoryInfo = new DirectoryInfo(directory);
+            if (!directoryInfo.Exists)
             {
-                dirInfo.Create();
+                directoryInfo.Create();
             }
-            using (StreamReader readFile = new StreamReader(path + "\\lab.dat"))
+            string path = directory + "\\lab.dat";
+            StreamReader readFile = new StreamReader(path);
+            using (readFile)
         	{
-				string row = readFile.ReadLine();
-				while (row != null) 
+            	while (readFile.Peek() != -1)
                 {
                     string surname = readFile.ReadLine();
 					string pos = readFile.ReadLine();
@@ -76,14 +78,13 @@ namespace Lab6
 								position = Pos.А;
 							}
 					int year = int.Parse(readFile.ReadLine());
-					decimal salary = decimal.Parse(readFile.ReadLine(), System.Globalization.CultureInfo.InvariantCulture);
+					decimal salary = decimal.Parse(readFile.ReadLine());
 					Worker newWorker;
 					newWorker.surname = surname;
 					newWorker.position = position;
 					newWorker.year = year;
 					newWorker.salary = salary;
 					table.Add(newWorker);
-					row = readFile.ReadLine();
                 }
         	}
         	
@@ -122,7 +123,7 @@ namespace Lab6
 					decimal salary = 0;
 					do
 					{
-						Console.Write("Enter the position in Russian: ");
+						Console.Write("Enter the position in Russian (П, С, А): ");
 						string pos = Console.ReadLine();
 							if (pos == "П")
 							{
@@ -258,7 +259,7 @@ namespace Lab6
 							surname = Console.ReadLine();
 							do
 							{
-								Console.Write("Enter the position in Russian: ");
+								Console.Write("Enter the position in Russian (П, С, А): ");
 								string pos = Console.ReadLine();
 								if (pos == "П")
 								{
@@ -395,6 +396,13 @@ namespace Lab6
 				}
 				if (selector == 7)
 				{
+					using (StreamWriter newText =  new StreamWriter(path, false))
+					{
+						for (int i = 0; i < table.Count; i++)
+						{
+							newText.WriteLine("{0}\n{1}\n{2}\n{3}", table[i].surname, table[i].position, table[i].year, table[i].salary);
+						}
+					}
 					working = false;
 				}
 				if (selector < 1 || selector > 7)
