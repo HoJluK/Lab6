@@ -46,12 +46,9 @@ namespace Lab6
 				Console.WriteLine("{0, -20} : {1, -15} {2, -15}", time, operation, name);
 			}
 		}
-        public static void Execute()
-        {
-        	var table = new List<Worker>();
-        	
-        	string directory = @"C:\Lab6_1";
-        	string path = directory + "\\lab.dat";
+        
+        public static void CreateFile(string directory, string path)
+    	{
         	var directoryInfo = new DirectoryInfo(directory);
             if (!directoryInfo.Exists)
             {
@@ -59,7 +56,16 @@ namespace Lab6
             }
             FileStream file = new FileStream(path, FileMode.OpenOrCreate);
             file.Close();
+    	}
+        
+        public static void Execute()
+        {
+        	var table = new List<Worker>();
 
+        	string directory = @"C:\Lab6_2";
+        	string path = directory + "\\lab.dat";
+        	CreateFile(directory, path);
+        	
             StreamReader readFile = new StreamReader(path);
             using (readFile)
         	{
