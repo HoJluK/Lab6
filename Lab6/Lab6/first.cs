@@ -62,7 +62,7 @@ namespace Lab6
         {
         	var table = new List<Worker>();
 
-        	string directory = @"C:\Lab6_2";
+        	string directory = @"C:\Lab6_1";
         	string path = directory + "\\lab.dat";
         	CreateFile(directory, path);
         	
