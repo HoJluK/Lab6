@@ -51,12 +51,15 @@ namespace Lab6
         	var table = new List<Worker>();
         	
         	string directory = @"C:\Lab6_1";
+        	string path = directory + "\\lab.dat";
         	var directoryInfo = new DirectoryInfo(directory);
             if (!directoryInfo.Exists)
             {
                 directoryInfo.Create();
             }
-            string path = directory + "\\lab.dat";
+            FileStream file = new FileStream(path, FileMode.OpenOrCreate);
+            file.Close();
+
             StreamReader readFile = new StreamReader(path);
             using (readFile)
         	{
