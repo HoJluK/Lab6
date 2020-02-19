@@ -23,7 +23,11 @@ namespace Lab6
             {
                 directoryInfo.Create();
             }
-                        
+            
+            if (File.Exists(copyFilePath))
+            {
+            	File.Delete(copyFilePath);
+            }
             File.Copy(firstFilePath, copyFilePath);
             FileStream originalFile = new FileStream(copyFilePath, FileMode.Open);
             FileStream backupFile = new FileStream(backupFilePath, FileMode.Create);
