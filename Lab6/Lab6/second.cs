@@ -19,10 +19,7 @@ namespace Lab6
         	string secondFilePath = directory + "\\lab2.dat";
         	
             string setOfCouples = String.Empty;
-            string startWriting = String.Empty;	
-            string startFinding = String.Empty;
         	string secondNumbers = String.Empty;        	
-        	string startWritingSecondFile = String.Empty;
         	string textFromFile = String.Empty;
         	
 			var directoryInfo = new DirectoryInfo(directory);
@@ -33,11 +30,6 @@ namespace Lab6
         	
         	using (BinaryWriter writeToTheFirstFile = new BinaryWriter(new FileStream(firstFilePath, FileMode.OpenOrCreate)))
         	{
-        		while (startWriting != "1")
-	            {
-		            Console.Write("Enter \"1\" to write set of couples in the first file: ");
-		            startWriting = Console.ReadLine();
-	            }
 	            for (int N = 1; N <= 100; N++)
 	            {
 	            	setOfCouples += N + " - 2^" + N + "\n";
@@ -49,11 +41,6 @@ namespace Lab6
         	
         	using (BinaryReader readFromTheFirstFile = new BinaryReader(new FileStream(firstFilePath, FileMode.Open)))
         	{
-        		while (startFinding != "2")
-	            {
-		            Console.Write("Enter \"2\" to find second numbers in the first file: ");
-		            startFinding = Console.ReadLine();
-	            }
 				textFromFile = readFromTheFirstFile.ReadString();
         		Regex numbers = new Regex(@"(\b2)(\^)(\d*\b)");
 	        	MatchCollection matches = numbers.Matches(textFromFile);
@@ -67,11 +54,6 @@ namespace Lab6
         	
         	using (BinaryWriter writeToTheSecondFile = new BinaryWriter(new FileStream(secondFilePath, FileMode.Create)))
         	{
-	        	while (startWritingSecondFile != "3")
-	            {
-		            Console.Write("Enter \"3\" to write second numbers to the second file: ");
-		            startWritingSecondFile = Console.ReadLine();
-	            }
 				writeToTheSecondFile.Write(secondNumbers);
         		Console.WriteLine("The numbers are written to file");
         		writeToTheSecondFile.Close();
