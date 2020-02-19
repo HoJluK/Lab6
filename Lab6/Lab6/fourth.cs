@@ -9,12 +9,11 @@ namespace Lab6
     	Написать программу, которая создает на одном из разделов жесткого диска директорию Lab6_Temp,
 		автоматически копирует в эту директорию ваш файл lab.dat из задания 1
 		и создает в ней копию этого файла lab_backup.dat путем побайтового копирования.
-		Вывестина консоль информацию о файле lab.dat: размер, время последнего изменения, время последнего доступа.
+		Вывести на консоль информацию о файле lab.dat: размер, время последнего изменения, время последнего доступа.
     	*/
         public static void Execute()
         {
         	string directory = @"C:\Lab6_Temp";
-        	
         	string firstFilePath = @"C:\Lab6_1\lab.dat";
         	string copyFilePath = @"C:\Lab6_Temp\lab.dat";
         	string backupFilePath = directory + "\\lab_backup.dat";
@@ -32,8 +31,8 @@ namespace Lab6
             
             FileInfo fileInf = new FileInfo(backupFilePath);
             Console.WriteLine("Size of the file: " + fileInf.Length);
-            Console.WriteLine("Time of the last changing: " + fileInf.CreationTime);
-
+            Console.WriteLine("Time of the last changing: " + fileInf.LastWriteTime);
+            Console.WriteLine("Time of the last access: " + fileInf.LastAccessTime);
             
             Console.ReadKey();
         }
