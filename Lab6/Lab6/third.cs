@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Text.RegularExpressions;
 
 namespace Lab6
 {
@@ -18,32 +17,22 @@ namespace Lab6
         	string firstFilePath = directory + "\\lab.txt";
         	string secondFilePath = directory + "\\lab2.txt";
                    	
-            string textFromFile = String.Empty;
         	string newText = String.Empty;
         	int countOfVoidStrings = 0;
-        	
-            using (StreamReader readFromTheFirstFile = new StreamReader(new FileStream(firstFilePath, FileMode.Open)))
-        	{
-				while (!readFromTheFirstFile.EndOfStream)
-				{
-					string line = readFromTheFirstFile.ReadLine();
-					if (!String.IsNullOrWhiteSpace(line))
-					{
-						newText += line + "\n";
-					}
-					else
-					{
-						line = readFromTheFirstFile.ReadLine();
-						if (!String.IsNullOrWhiteSpace(line))
-						{
-							newText += "\n" + line + "\n";
-						}
-						countOfVoidStrings++;
-					}
-				}
-        		Console.WriteLine("The text is read");
-	        	readFromTheFirstFile.Close();
-        	}
+
+            string[] text = File.ReadAllLines(firstFilePath);
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] != "")
+                    newText += text[i] + "\n";
+                else if (text[i+1] != "")
+                {
+                    newText += "\n" + text[i + 1] + "\n";
+                    i++;
+                }
+                else
+                    countOfVoidStrings++;
+            }
             
 			File.WriteAllLines(secondFilePath, newText.Split('\n'));
             Console.WriteLine();
