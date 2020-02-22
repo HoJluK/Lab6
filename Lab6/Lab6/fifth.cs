@@ -39,8 +39,8 @@ namespace Lab6
         	int height = picture.ReadInt32();
         	Console.WriteLine("Height in pixels: {0} pixels", height);
         	picture.ReadInt16();
-        	short bitPerPixels = picture.ReadInt16();
-        	Console.Write("Bit/pixel: {0}, ", bitPerPixels);
+        	short bitPerPixel = picture.ReadInt16();
+        	Console.Write("Bit/pixel: {0}, ", bitPerPixel);
         	if (bitPerPixels == 1)
         		Console.WriteLine("monochrome palette, 2 colours");
         	if (bitPerPixels == 4)
