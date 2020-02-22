@@ -41,15 +41,15 @@ namespace Lab6
         	picture.ReadInt16();
         	short bitPerPixel = picture.ReadInt16();
         	Console.Write("Bit/pixel: {0}, ", bitPerPixel);
-        	if (bitPerPixels == 1)
+        	if (bitPerPixel == 1)
         		Console.WriteLine("monochrome palette, 2 colours");
-        	if (bitPerPixels == 4)
+        	if (bitPerPixel == 4)
         		Console.WriteLine("4bit palletized, 16 colours");
-        	if (bitPerPixels == 8)
+        	if (bitPerPixel == 8)
         		Console.WriteLine("8bit palletized, 256 colours");
-        	if (bitPerPixels == 16)
+        	if (bitPerPixel == 16)
         		Console.WriteLine("16bit RGB, 65536 colours");
-        	if (bitPerPixels == 24)
+        	if (bitPerPixel == 24)
         		Console.WriteLine("24bit RGB, 16M colours");
         	int compressionType = picture.ReadInt32();
         	if (compressionType == 0)
