@@ -29,7 +29,6 @@ namespace Lab6
 
             public void showTable()
             {
-                Console.WriteLine("Surname{0, -13} Position{0, -12} Birth year{0, -10} Salary{0, -14}", " ");
                 Console.WriteLine("{0, -20} {1, -20} {2, -20} {3, -20}", surname, position, year, salary);
                 Console.WriteLine();
             }
@@ -116,6 +115,7 @@ namespace Lab6
                 int selector = int.Parse(Console.ReadLine());
                 if (selector == 1)
                 {
+                    Console.WriteLine("Surname{0, -13} Position{0, -12} Birth year{0, -10} Salary{0, -14}", " ");
                     for (int i = 0; i < table.Count; i++)
                     {
                         table[i].showTable();
